@@ -3,9 +3,12 @@
     <OutputType>WinExe</OutputType>
     <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
     One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
-    <TargetFrameworks>net7.0;net7.0-windows10.0.19041.0;</TargetFrameworks>
+    <TargetFrameworks>net7.0;</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">
-      net7.0;net7.0-windows10.0.19041.0;net7.0-windows7.0;
+      net7.0;net7.0-windows10.0.17763.0;
+    </TargetFrameworks>
+    <TargetFrameworks Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
+      net7.0;
     </TargetFrameworks>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>

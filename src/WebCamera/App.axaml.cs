@@ -2,6 +2,7 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using System;
 using WebCamera.Core.ViewModels;
 using WebCamera.Views;
 
@@ -14,11 +15,15 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public async override void OnFrameworkInitializationCompleted()
     {
         // Line below is needed to remove Avalonia data validation.
         // Without this line you will get duplicate validations from both Avalonia and CT
         BindingPlugins.DataValidators.RemoveAt(0);
+
+#if WINDOWS10_0_17763_0_OR_GREATER
+        await Windows.WebCameraProfiler.GetVideoProfileSupportedDeviceIdAsync();
+#endif
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {

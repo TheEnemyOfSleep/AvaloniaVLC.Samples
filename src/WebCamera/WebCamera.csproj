@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net7.0-windows10.0.19041.0;</TargetFrameworks>
+    <!--net7.0-windows10.0.19041.0; or net7.0-windows10.0.17763.0;-->
+    <TargetFrameworks>net7.0;</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">
-      net7.0;net7.0-windows10.0.19041.0;net7.0-windows7.0;
+      net7.0;net7.0-windows10.0.17763.0;
+    </TargetFrameworks>
+    <TargetFrameworks Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
+      net7.0;
     </TargetFrameworks>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
@@ -32,5 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebCamera.Core\WebCamera.Core.csproj" />
+    <ProjectReference Include="..\WebCamera.Windows\WebCamera.Windows.csproj"  Condition="'$(TargetFramework)' == 'net7.0-windows10.0.17763.0'"/>
   </ItemGroup>
 </Project>
