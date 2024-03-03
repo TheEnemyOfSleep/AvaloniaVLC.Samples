@@ -2,8 +2,7 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-
-using WebCamera.ViewModels;
+using WebCamera.Core.ViewModels;
 using WebCamera.Views;
 
 namespace WebCamera;
